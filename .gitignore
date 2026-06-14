@@ -1,0 +1,43 @@
+# Dependencies
+node_modules/
+.venv/
+env/
+venv/
+
+# Environment files
+.env
+.env.local
+.env.*.local
+*.env
+
+# SQLite databases
+*.db
+*.db-shm
+*.db-wal
+bankmind-api/bankmind.db
+bankmind-api/bankmind.db-shm
+bankmind-api/bankmind.db-wal
+
+# Python caches and logs
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+*.log
+logs/
+
+# Build and IDE files
+dist/
+dist-ssr/
+.vscode/
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Exclude structure folder
+structure/

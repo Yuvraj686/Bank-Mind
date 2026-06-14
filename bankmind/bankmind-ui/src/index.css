@@ -1,0 +1,127 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    @apply bg-bg-base text-text-primary font-sans;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    @apply bg-bg-base;
+  }
+  ::-webkit-scrollbar-thumb {
+    @apply bg-bm-border rounded-full;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-text-muted;
+  }
+}
+
+@layer components {
+  /* ── Cards / Panels ─────────────────────────────────────────────────────── */
+  .card {
+    @apply bg-bg-surface border border-bm-border rounded-xl p-5;
+  }
+  .card-elevated {
+    @apply bg-bg-elevated border border-bm-border rounded-xl p-5;
+  }
+
+  /* ── Buttons ─────────────────────────────────────────────────────────────── */
+  .btn {
+    @apply inline-flex items-center gap-2 px-4 py-2 rounded-lg font-medium text-sm
+           transition-all duration-150 cursor-pointer select-none;
+  }
+  .btn-primary {
+    @apply btn bg-accent-primary text-white hover:bg-blue-500 active:scale-95;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent border border-bm-border text-text-secondary
+           hover:border-accent-primary hover:text-text-primary active:scale-95;
+  }
+  .btn-danger {
+    @apply btn bg-accent-danger text-white hover:bg-red-500 active:scale-95;
+  }
+  .btn-success {
+    @apply btn bg-accent-success text-white hover:bg-emerald-500 active:scale-95;
+  }
+  .btn-warning {
+    @apply btn bg-accent-warning text-white hover:bg-amber-500 active:scale-95;
+  }
+  .btn-icon {
+    @apply btn px-2 py-2 bg-bg-elevated border border-bm-border hover:border-accent-primary;
+  }
+
+  /* ── Stage Badges ─────────────────────────────────────────────────────────── */
+  .badge-lead     { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium border border-accent-primary text-accent-primary; }
+  .badge-onboarding { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-warning/10 text-accent-warning border border-accent-warning/30; }
+  .badge-active   { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-success/10 text-accent-success border border-accent-success/30; }
+  .badge-dormant  { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-text-muted/10 text-text-muted border border-text-muted/30; }
+
+  /* ── Agent Badges ────────────────────────────────────────────────────────── */
+  .badge-acquisition { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-primary/10 text-accent-primary; }
+  .badge-onboarding-agent { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-warning/10 text-accent-warning; }
+  .badge-adoption { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-success/10 text-accent-success; }
+  .badge-life_event { @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-medium bg-accent-purple/10 text-accent-purple; }
+
+  /* ── Inputs ──────────────────────────────────────────────────────────────── */
+  .input {
+    @apply w-full bg-bg-elevated border border-bm-border rounded-lg px-4 py-2.5 text-sm text-text-primary
+           placeholder-text-muted outline-none focus:border-accent-primary transition-colors;
+  }
+
+  /* ── Animations ──────────────────────────────────────────────────────────── */
+  .animate-slide-in-new {
+    animation: slideIn 300ms ease-out;
+  }
+  .animate-highlight-fade {
+    animation: highlightFade 5s ease-out forwards;
+  }
+  
+  /* ── Mono text ───────────────────────────────────────────────────────────── */
+  .mono { @apply font-mono text-xs; }
+}
+
+@layer utilities {
+  /* Processing pulse dot */
+  .processing-dot {
+    @apply w-2 h-2 rounded-full bg-accent-primary;
+    animation: pulse 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* Confidence bar fill */
+  .confidence-bar {
+    @apply h-1.5 rounded-full bg-accent-primary;
+    transition: width 800ms ease-out;
+  }
+
+  /* Override pending border */
+  .override-pending {
+    @apply border-l-2 border-accent-warning;
+  }
+}
+
+@keyframes slideIn {
+  from { transform: translateY(-8px); opacity: 0; }
+  to   { transform: translateY(0);     opacity: 1; }
+}
+
+@keyframes highlightFade {
+  0%   { background-color: rgba(59, 130, 246, 0.15); }
+  100% { background-color: transparent; }
+}
+
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
