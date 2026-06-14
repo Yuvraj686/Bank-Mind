@@ -18,35 +18,43 @@ A B2B SaaS demo for banks — 4 autonomous AI agents handle the full customer li
 - Docker Desktop (for PostgreSQL + Redis)
 - An Anthropic API key
 
-### 1. Start Database & Redis
+### 1. Configure the Environment
 
+Copy `.env.example` to `.env` in the backend directory (and edit to add your `ANTHROPIC_API_KEY` if needed):
 ```bash
 cd bankmind-api
-docker compose up -d
+cp .env.example .env
 ```
 
-Wait ~10 seconds for services to be healthy.
+### 2. Choose Database & Services Mode
 
-### 2. Set up Backend
+#### Option A: With Docker (PostgreSQL + Redis)
+1. Start services:
+   ```bash
+   cd bankmind-api
+   docker compose up -d
+   ```
+2. Run database migrations:
+   ```bash
+   cd bankmind-api
+   alembic upgrade head
+   ```
+
+#### Option B: Without Docker (SQLite + In-memory Redis fallback) — *Currently configured on this machine*
+1. Initialize the SQLite database and seed the demo banker:
+   ```bash
+   cd bankmind-api
+   python init_db.py
+   ```
+
+### 3. Run Backend API Server
 
 ```bash
 cd bankmind-api
-
-# Copy and configure environment
-cp .env.example .env
-# Edit .env and add your ANTHROPIC_API_KEY
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Run migrations (creates all 6 tables + seeds demo banker)
-alembic upgrade head
-
-# Start the API server
 uvicorn main:app --reload --port 8000
 ```
 
-### 3. Set up Frontend
+### 4. Set up Frontend
 
 ```bash
 cd bankmind-ui
@@ -58,13 +66,14 @@ npm install
 npm run dev
 ```
 
-### 4. Access the App
+### 5. Access the App
 
 - **Frontend**: http://localhost:5173
 - **API Docs**: http://localhost:8000/docs
 - **Health**: http://localhost:8000/health
 
-### 5. Demo Credentials
+### 6. Demo Credentials
+
 
 ```
 Email: admin@bankmind.ai
